@@ -1,58 +1,50 @@
-import {useCallback, useEffect} from 'react';
+import { FC, useEffect } from 'react'
 
 // Libs
-import {useSelector, useDispatch} from "react-redux";
-import Pagination from 'antd/es/pagination';
-import {usePrevious} from "react-use";
-
+import { useSelector, useDispatch } from 'react-redux'
 
 // Components
-import Loading from '../../components/Loading';
-import {CharacterCards} from "./components";
-import SearchInput from './components/SearchInput/SearchInput';
+import Loading from 'src/components/Loading'
 
-
-// Styles
-import styles from './CharactersListPage.module.css';
 
 // Store, actions and etc.
-import {fetchCharacters, selectAllCharacters, selectCount, Status, setSearchQuery, setSelectedPage} from "../../store/slices/Characters.slice";
+import {
+  fetchCharacters,
+  Status,
+} from 'src/store/slices/Characters.slice'
 
-import Content from './Content';
+import { Content } from './components'
 
 // Type definitions
-import type { AppDispatch } from "../../store";
+import type { AppDispatch } from '../../store'
 
-const CharactersListPage = () => {
+const CharactersListPage: FC = () => {
   // Hooks
-  const dispatch = useDispatch<AppDispatch>();
-
+  const dispatch = useDispatch<AppDispatch>()
 
   // Selectors
-  const status = useSelector(state => state.characters.status);
+  const status = useSelector(state => state.characters.status)
 
   // Effects
   useEffect(() => {
     if (status === Status.IDLE) {
-      dispatch(fetchCharacters());
+      dispatch(fetchCharacters())
     }
-  }, [dispatch, status]);
+  }, [dispatch, status])
 
   if (status === Status.LOADING) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (status === Status.SUCCEEDED) {
-    return <Content/>
+    return <Content />
   }
 
   if (status === Status.FAILED) {
     return <h1>Error</h1>
   }
-};
+}
 
+CharactersListPage.displayName = 'CharactersListPage'
 
-
-CharactersListPage.displayName = 'CharactersListPage';
-
-export default CharactersListPage;
+export default CharactersListPage

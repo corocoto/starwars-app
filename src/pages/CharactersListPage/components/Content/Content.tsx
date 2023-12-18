@@ -1,24 +1,31 @@
+import { useCallback, useEffect, FC } from 'react'
+
+// Libs
 import { useDispatch, useSelector } from 'react-redux'
+import Pagination from 'antd/es/pagination'
+import { usePrevious } from 'react-use'
+
+// Store
 import {
   fetchCharacters,
   selectAllCharacters,
   selectCount,
   setSearchQuery,
   setSelectedPage
-} from '../../store/slices/Characters.slice'
-import { useCallback, useEffect } from 'react'
-import styles from './CharactersListPage.module.css'
+} from 'src/store/slices/Characters.slice.js';
 
-import Pagination from 'antd/es/pagination'
-import { usePrevious } from 'react-use'
+// Type definitions
+import type {AppDispatch} from 'src/store';
+
+// Styles
+import styles from './Content.module.css'
 
 // Components
-import { CharacterCards } from './components'
-import SearchInput from './components/SearchInput/SearchInput'
+import { SearchInput, CharacterCards } from '../index'
 
-const Content = () => {
+const Content: FC = () => {
   // Hooks
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   // Selectors
   const characters = useSelector(selectAllCharacters)
@@ -75,6 +82,8 @@ const Content = () => {
       <CharacterCards characters={characters} />
     </main>
   )
-}
+};
+
+Content.displayName = 'Content';
 
 export default Content

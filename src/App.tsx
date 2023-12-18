@@ -1,3 +1,4 @@
+import { FC } from 'react';
 // Libs
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -5,10 +6,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PageLayout from './components/PageLayout/PageLayout'
 
 // Pages
-import CharacterPage from './pages/CharacterPage'
-import { CharactersListPage } from './pages'
+import { CharactersListPage, CharacterPage } from './pages'
 
-function App() {
+const App: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -22,5 +22,7 @@ function App() {
     </BrowserRouter>
   )
 }
+
+App.displayName = 'App';
 
 export default App

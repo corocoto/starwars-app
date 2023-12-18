@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
 // Components
-import Loading from '../../../components/Loading/index'
+import Loading from 'src/components/Loading'
 
 const withCharacterThirdPartyData =
   WrappedComponent =>

@@ -2,10 +2,10 @@
 import styles from './CharacterCards.module.css'
 
 // Misc
-import { getUrlId } from '../../../../utils/getUrlId'
+import { getUrlId } from 'src/utils/getUrlId'
 
 // Components
-import { CharacterCard } from './components'
+import { CharacterCard } from './components/index.js'
 
 const CharacterCards = ({ characters }) => {
   return (

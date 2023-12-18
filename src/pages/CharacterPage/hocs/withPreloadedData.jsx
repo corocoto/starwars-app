@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 // Components
-import Loading from '../../../components/Loading'
-import { selectCharacterById } from '../../../store/slices/Characters.slice'
+import Loading from 'src/components/Loading'
+
+// Selectors
+import { selectCharacterById } from 'src/store/slices/Characters.slice'
 
 const withPreloadedData = WrappedComponent => () => {
   // Hooks

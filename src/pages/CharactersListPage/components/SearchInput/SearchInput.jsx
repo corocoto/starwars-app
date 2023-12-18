@@ -17,7 +17,6 @@ const SearchInput = props => {
   }, [timedQuery])
 
   useEffect(() => {
-    debugger
     if (value === endedQuery) {
       return
     }

@@ -1,6 +1,11 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-import {api} from "../../services/api";
-import {Paginated, Person} from "../../types/Character.type";
+// Libs
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+// APIs
+import { api } from "src/services/api";
+
+// Type definition
+import type { Paginated, Person } from "src/types/Character.type";
 
 export enum Status {
   IDLE = 'idle',

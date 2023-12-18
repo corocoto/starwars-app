@@ -1,1 +1,1 @@
-export {default} from './CharactersListPage'
+export { default } from './CharactersListPage'
