@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from 'react'
 // Libs
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -23,6 +23,6 @@ const App: FC = () => {
   )
 }
 
-App.displayName = 'App';
+App.displayName = 'App'
 
 export default App

@@ -11,17 +11,21 @@ import {
   selectAllCharacters,
   selectCount,
   setSearchQuery,
-  setSelectedPage
-} from 'src/store/slices/Characters.slice.js';
+  setSelectedPage,
+  selectCurrentPage,
+  selectCurentCharactersSearchQuery
+} from 'src/store/slices/Characters.slice.js'
 
 // Type definitions
-import type {AppDispatch} from 'src/store';
+import type { AppDispatch } from 'src/store'
+import type { IChaptersState } from 'src/store/slices/Characters.slice'
 
 // Styles
 import styles from './Content.module.css'
 
 // Components
-import { SearchInput, CharacterCards } from '../index'
+import { CharacterCards } from '../index'
+import SearchInput from 'src/components/SearchInput'
 
 const Content: FC = () => {
   // Hooks
@@ -30,8 +34,8 @@ const Content: FC = () => {
   // Selectors
   const characters = useSelector(selectAllCharacters)
   const count = useSelector(selectCount)
-  const selectedPage = useSelector(state => state.characters.selectedPage)
-  const searchQuery = useSelector(state => state.characters.searchQuery)
+  const selectedPage = useSelector(selectCurrentPage)
+  const searchQuery = useSelector(selectCurentCharactersSearchQuery)
 
   const prevSearchQuery = usePrevious(searchQuery)
   const prevSelectedPage = usePrevious(selectedPage)
@@ -47,7 +51,7 @@ const Content: FC = () => {
 
   // Handlers
   const handleSearchInputChange = useCallback(
-    newSearchValue => {
+    (newSearchValue: IChaptersState['searchQuery']) => {
       dispatch(setSearchQuery({ searchQuery: newSearchValue }))
       dispatch(setSelectedPage({ selectedPage: 1 }))
     },
@@ -55,7 +59,7 @@ const Content: FC = () => {
   )
 
   const handleSelectedPageChange = useCallback(
-    newPage => {
+    (newPage: IChaptersState['selectedPage']) => {
       dispatch(setSelectedPage({ selectedPage: newPage }))
     },
     [dispatch]
@@ -82,8 +86,8 @@ const Content: FC = () => {
       <CharacterCards characters={characters} />
     </main>
   )
-};
+}
 
-Content.displayName = 'Content';
+Content.displayName = 'Content'
 
 export default Content

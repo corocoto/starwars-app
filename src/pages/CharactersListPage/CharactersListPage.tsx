@@ -6,12 +6,8 @@ import { useSelector, useDispatch } from 'react-redux'
 // Components
 import Loading from 'src/components/Loading'
 
-
 // Store, actions and etc.
-import {
-  fetchCharacters,
-  Status,
-} from 'src/store/slices/Characters.slice'
+import { fetchCharacters, Status } from 'src/store/slices/Characters.slice'
 
 import { Content } from './components'
 

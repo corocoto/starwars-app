@@ -16,6 +16,7 @@ export interface Character {
 }
 
 export type Person = {
+  url: string
   name: string
   height: string
   mass: string

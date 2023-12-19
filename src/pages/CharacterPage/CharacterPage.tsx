@@ -19,7 +19,7 @@ const CharacterPage = ({ characterData, id }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
 
   // Hooks
-  const normalizedCharacterData = useDataNormalize({ characterData });
+  const normalizedCharacterData = useDataNormalize({ characterData })
 
   // Handlers
   const handleModeChange = useCallback(() => {}, [])

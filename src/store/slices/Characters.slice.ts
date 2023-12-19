@@ -6,6 +6,7 @@ import { api } from "src/services/api";
 
 // Type definition
 import type { Paginated, Person } from "src/types/Character.type";
+import type { RootState } from '../index';
 
 export enum Status {
   IDLE = 'idle',
@@ -16,11 +17,11 @@ export enum Status {
 
 export interface IChaptersState {
   status: Status;
-  error: string | null;
+  error?: string | null;
   data: Person[];
   count: number;
-  searchQuery: '',
-  selectedPage: 1
+  searchQuery: string,
+  selectedPage: number
 }
 
 const initialState = {
@@ -32,7 +33,7 @@ const initialState = {
   selectedPage: 1
 };
 
-const getQueryParams = ({pageNumber, searchRequest}) => {
+const getQueryParams = ({pageNumber, searchRequest}: {pageNumber?: IChaptersState['selectedPage'], searchRequest: IChaptersState['searchQuery']}) => {
   let query = ''
 
   if (pageNumber && searchRequest) {
@@ -47,12 +48,12 @@ const getQueryParams = ({pageNumber, searchRequest}) => {
 }
 
 
-export const fetchCharacters = createAsyncThunk<Paginated<Person>>('characters/fetchCharacters', async (args,{getState}) => {
-  const {characters} = getState();
+export const fetchCharacters = createAsyncThunk<Paginated<Person>>('characters/fetchCharacters', async (_args, {getState}) => {
+  const state: RootState = getState();
 
   const queryParams = getQueryParams({
-    pageNumber: characters.selectedPage,
-    searchRequest: characters.searchQuery
+    pageNumber: state.characters.selectedPage,
+    searchRequest: state.characters.searchQuery
   });
 
     const response = await api.get(`people/${queryParams}`);
@@ -90,17 +91,20 @@ const charactersSlice = createSlice({
   }
 });
 
+// Actions
 export const { setSearchQuery, setSelectedPage } = charactersSlice.actions;
 
-export const selectAllCharacters = state => state.characters.data;
-export const selectCharacterById = (state, characterId) => {
+// Selectors
+export const selectAllCharacters = (state: RootState) => state.characters.data;
+export const selectCharacterById = (state: RootState, characterId: Person['url']) => {
   return state.characters.data.find(character => {
     const url = character.url;
     const id = url.split('/').at(-2);
-    return id=== characterId
+    return id === characterId
   });
 }
-
-export const selectCount = (state) => state.characters.count;
+export const selectCount = (state: RootState) => state.characters.count;
+export const selectCurrentPage = (state: RootState) => state.characters.selectedPage;
+export const selectCurentCharactersSearchQuery = (state: RootState) => state.characters.searchQuery
 
 export default charactersSlice.reducer;

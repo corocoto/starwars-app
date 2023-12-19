@@ -1,9 +1,16 @@
-import { useState, useEffect, useCallback } from 'react'
+import { FC, useState, useEffect, useCallback, ChangeEvent } from 'react'
 
 // Libs
 import Input from 'antd/es/input'
 
-const SearchInput = props => {
+// Type definitions
+import { InputProps } from 'antd/es/input/Input'
+
+type SearchInputType = InputProps & {
+  onChange: (newValue: string) => void
+}
+
+const SearchInput: FC<SearchInputType> = props => {
   const { onChange, value, ...rest } = props
 
   // State
@@ -20,10 +27,10 @@ const SearchInput = props => {
     if (value === endedQuery) {
       return
     }
-    onChange(endedQuery)
+    onChange(endedQuery as string)
   }, [endedQuery, onChange])
 
-  const handleChange = useCallback(event => {
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setTimedQuery(event.target.value)
   }, [])
 

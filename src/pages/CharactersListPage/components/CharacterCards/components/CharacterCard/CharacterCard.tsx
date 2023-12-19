@@ -24,9 +24,9 @@ const CharacterCard: FC<ICardProps> = ({ imageSrc, details }) => {
         <AntdCard.Meta title={name} />
       </AntdCard>
     </Link>
-  );
+  )
 }
 
-CharacterCard.displayName = 'CharacterCard';
+CharacterCard.displayName = 'CharacterCard'
 
 export default memo(CharacterCard)
