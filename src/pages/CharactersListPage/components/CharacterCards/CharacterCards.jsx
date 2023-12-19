@@ -5,7 +5,7 @@ import styles from './CharacterCards.module.css'
 import { getUrlId } from 'src/utils/getUrlId'
 
 // Components
-import { CharacterCard } from './components/index.js'
+import { CharacterCard } from './components'
 
 const CharacterCards = ({ characters }) => {
   return (
