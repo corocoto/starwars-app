@@ -7,11 +7,12 @@ import Input from 'antd/es/input'
 import { InputProps } from 'antd/es/input/Input'
 
 type SearchInputType = InputProps & {
-  onChange: (newValue: string) => void
+  value: string
+  onChangeEvent: (newValue: string) => void
 }
 
 const SearchInput: FC<SearchInputType> = props => {
-  const { onChange, value, ...rest } = props
+  const { onChangeEvent, value, ...rest } = props
 
   // State
   const [timedQuery, setTimedQuery] = useState(value)
@@ -27,11 +28,12 @@ const SearchInput: FC<SearchInputType> = props => {
     if (value === endedQuery) {
       return
     }
-    onChange(endedQuery as string)
-  }, [endedQuery, onChange])
+    onChangeEvent(endedQuery)
+  }, [endedQuery, onChangeEvent])
 
+  // Handlers
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setTimedQuery(event.target.value)
+    setTimedQuery(event.target.value);
   }, [])
 
   return (

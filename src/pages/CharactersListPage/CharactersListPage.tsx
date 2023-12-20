@@ -4,22 +4,25 @@ import { FC, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // Components
-import Loading from 'src/components/Loading'
-
-// Store, actions and etc.
-import { fetchCharacters, Status } from 'src/store/slices/Characters.slice'
-
+import { Loading } from 'src/components'
 import { Content } from './components'
 
+// Thunks
+import { fetchCharacters } from 'src/store/slices/Characters';
+
+// Selectors
+import {selectStatus} from 'src/store/slices/Characters/selectors'
+
 // Type definitions
-import type { AppDispatch } from '../../store'
+import type { AppDispatch } from 'src/store'
+import {Status} from 'src/types/Thunk.type'
 
 const CharactersListPage: FC = () => {
   // Hooks
   const dispatch = useDispatch<AppDispatch>()
 
   // Selectors
-  const status = useSelector(state => state.characters.status)
+  const status = useSelector(selectStatus)
 
   // Effects
   useEffect(() => {

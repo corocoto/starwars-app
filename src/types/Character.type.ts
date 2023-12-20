@@ -60,9 +60,3 @@ export type Vehicle = {
   max_atmosphering_speed: string
 }
 
-export type Paginated<T> = {
-  count: number
-  next: string | null
-  previous: string | null
-  results: T[]
-}

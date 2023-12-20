@@ -1,7 +1,9 @@
-import { useCallback, useState } from 'react'
+import { FC, useCallback, useMemo, useState } from 'react'
+
+// Components
+import { Card } from 'src/components';
 
 // Libs
-import Card from 'antd/es/card'
 import Descriptions from 'antd/es/descriptions'
 import Switch from 'antd/es/switch'
 
@@ -14,7 +16,15 @@ import useDataNormalize from './hooks/useDataNormalize'
 // Styles
 import styles from './CharacterPage.module.css'
 
-const CharacterPage = ({ characterData, id }) => {
+// Type definition
+import type { Person } from 'src/types/Character.type'
+
+export interface CharacterPageProps {
+  characterData: Person,
+  id: Person['id']
+}
+
+const CharacterPage: FC<CharacterPageProps> = ({ characterData, id }) => {
   // States
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
 
@@ -23,6 +33,14 @@ const CharacterPage = ({ characterData, id }) => {
 
   // Handlers
   const handleModeChange = useCallback(() => {}, [])
+
+  // Memoized values
+  const cardImageProps = useMemo(() => {
+    return {
+      src: `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`,
+      alt: `${characterData.name}'s photo`
+    }
+  },[characterData.name, id]);
 
   return (
     <main className={styles.wrapper}>
@@ -36,16 +54,9 @@ const CharacterPage = ({ characterData, id }) => {
         bordered
       />
       <Card
-        style={{ width: 300 }}
-        cover={
-          <img
-            src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-            alt={`Photo of ${characterData.name}`}
-          />
-        }
-      >
-        <Card.Meta title={characterData.name + "'s photo"} />
-      </Card>
+        imageProps={cardImageProps}
+        title={characterData.name + "'s photo"}
+      />
     </main>
   )
 }

@@ -8,24 +8,28 @@ import { usePrevious } from 'react-use'
 // Store
 import {
   fetchCharacters,
-  selectAllCharacters,
-  selectCount,
   setSearchQuery,
   setSelectedPage,
-  selectCurrentPage,
-  selectCurentCharactersSearchQuery
-} from 'src/store/slices/Characters.slice.js'
+  charactersSelectors,
+} from 'src/store/slices/Characters'
 
 // Type definitions
 import type { AppDispatch } from 'src/store'
-import type { IChaptersState } from 'src/store/slices/Characters.slice'
+import type { CharactersState } from 'src/store/slices/Characters/Characters.types'
 
 // Styles
 import styles from './Content.module.css'
 
 // Components
-import { CharacterCards } from '../index'
-import SearchInput from 'src/components/SearchInput'
+import { CharacterCards } from './components'
+import { SearchInput } from 'src/components'
+
+const {
+  selectCurrentPage,
+  selectCurrentCharactersSearchQuery,
+  selectAllCharacters,
+  selectCount
+} = charactersSelectors
 
 const Content: FC = () => {
   // Hooks
@@ -35,7 +39,7 @@ const Content: FC = () => {
   const characters = useSelector(selectAllCharacters)
   const count = useSelector(selectCount)
   const selectedPage = useSelector(selectCurrentPage)
-  const searchQuery = useSelector(selectCurentCharactersSearchQuery)
+  const searchQuery = useSelector(selectCurrentCharactersSearchQuery)
 
   const prevSearchQuery = usePrevious(searchQuery)
   const prevSelectedPage = usePrevious(selectedPage)
@@ -51,7 +55,7 @@ const Content: FC = () => {
 
   // Handlers
   const handleSearchInputChange = useCallback(
-    (newSearchValue: IChaptersState['searchQuery']) => {
+    (newSearchValue: CharactersState['searchQuery']) => {
       dispatch(setSearchQuery({ searchQuery: newSearchValue }))
       dispatch(setSelectedPage({ selectedPage: 1 }))
     },
@@ -59,7 +63,7 @@ const Content: FC = () => {
   )
 
   const handleSelectedPageChange = useCallback(
-    (newPage: IChaptersState['selectedPage']) => {
+    (newPage: CharactersState['selectedPage']) => {
       dispatch(setSelectedPage({ selectedPage: newPage }))
     },
     [dispatch]
@@ -71,7 +75,7 @@ const Content: FC = () => {
         <SearchInput
           value={searchQuery}
           placeholder="Write character's name"
-          onChange={handleSearchInputChange}
+          onChangeEvent={handleSearchInputChange}
           className={styles.searchInput}
         />
         <Pagination
