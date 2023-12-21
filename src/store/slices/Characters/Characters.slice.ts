@@ -23,8 +23,8 @@ const initialState = {
 };
 
 // Thunks
-export const fetchCharacters = createAsyncThunk<Paginated<Person[]>>('characters/fetchCharacters', async (_args, {getState}) => {
-  const state: RootState = getState();
+export const fetchCharacters = createAsyncThunk<Paginated<Person[]>, undefined, { rejectValue: Error }>('characters/fetchCharacters', async (_, {getState}) => {
+  const state = getState() as RootState;
 
   const queryParams = getQueryParams({
     pageNumber: state.characters.selectedPage,

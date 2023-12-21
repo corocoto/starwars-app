@@ -1,10 +1,9 @@
 // Type definition
 import { RootState } from 'src/store'
-import { Person } from 'src/types/Character.type'
 
 // Selectors
 export const selectAllCharacters = (state: RootState) => state.characters.data;
-export const selectCharacterById = (state: RootState, characterId: Person['url']) => {
+export const selectCharacterById = (state: RootState, characterId: string) => {
   return state.characters.data.find(character => {
     const url = character.url;
     const id = url.split('/').at(-2);

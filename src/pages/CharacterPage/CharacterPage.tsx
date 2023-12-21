@@ -8,7 +8,7 @@ import Descriptions from 'antd/es/descriptions'
 import Switch from 'antd/es/switch'
 
 // HOCs
-import withPreloadedData from './hocs/withPreloadedData'
+import withData from './hocs/withData'
 
 // Hooks
 import useDataNormalize from './hooks/useDataNormalize'
@@ -21,7 +21,7 @@ import type { Person } from 'src/types/Character.type'
 
 export interface CharacterPageProps {
   characterData: Person,
-  id: Person['id']
+  id: string;
 }
 
 const CharacterPage: FC<CharacterPageProps> = ({ characterData, id }) => {
@@ -61,4 +61,4 @@ const CharacterPage: FC<CharacterPageProps> = ({ characterData, id }) => {
   )
 }
 
-export default withPreloadedData(CharacterPage)
+export default withData(CharacterPage)

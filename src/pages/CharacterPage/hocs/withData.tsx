@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {fetchCharacter, setPreloadedInformation} from 'src/store/slices/Character'
 
 // Type definitions
-import type { AppDispatch } from 'src/store'
+import type { AppDispatch, RootState } from 'src/store'
 import {Status} from 'src/types/Thunk.type'
 
 // Components
@@ -22,17 +22,19 @@ import {characterSelectors} from 'src/store/slices/Character'
 import { CharacterPageProps } from 'src/pages/CharacterPage/CharacterPage'
 
 const {selectCharacterById} = charactersSelectors;
-const {selectStatus} = characterSelectors;
+const {selectStatus, selectData} = characterSelectors;
 
-const withPreloadedData = <P extends CharacterPageProps>(WrappedComponent) => {
+
+const withData = <P extends CharacterPageProps>(WrappedComponent) => {
   const Component: FC<P> = () => {
     // Hooks
-    const { id } = useParams();
+    const id = (useParams().id as string);
     const dispatch = useDispatch<AppDispatch>()
 
     // Selectors
-    const loadedCharacter = useSelector(state => selectCharacterById(state, id))
+    const loadedCharacter = useSelector((state: RootState) => selectCharacterById(state, id))
     const status = useSelector(selectStatus);
+    const characterData = useSelector(selectData);
 
     useEffect(() => {
       if (typeof loadedCharacter === 'undefined') {
@@ -54,7 +56,7 @@ const withPreloadedData = <P extends CharacterPageProps>(WrappedComponent) => {
     }
 
     if (status === Status.SUCCEEDED) {
-      return <WrappedComponent id={id} characterData={character} />
+      return <WrappedComponent id={id} characterData={characterData} />
     }
   }
   return Component;
@@ -62,4 +64,4 @@ const withPreloadedData = <P extends CharacterPageProps>(WrappedComponent) => {
 
 
 
-export default withPreloadedData
+export default withData
