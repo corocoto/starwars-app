@@ -11,5 +11,5 @@ export default defineConfig({
       public: path.resolve('public/')
     },
   },
-  base: '/starwars-app/' // Turn off, if you want to run locally
+  // base: '/starwars-app/' // Turn off, if you want to run locally
 });
