@@ -1,0 +1,22 @@
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+
+  :global(.ant-row.ant-form-item-row) {
+    min-width: 100%;
+  }
+
+  :global(.ant-form-item-control) {
+    margin-left: auto;
+    min-width: 100%;
+  }
+
+  :global(.ant-form-item-control-input-content) {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    min-width: fit-content;
+  }
+
+
+}

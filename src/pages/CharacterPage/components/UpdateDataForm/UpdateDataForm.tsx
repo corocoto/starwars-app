@@ -26,6 +26,14 @@ import { updateCharacterInfo } from 'src/store/slices/Character'
 // Misc
 import getNormalizedCharacterData from './utils/getNormalizedCharacterData'
 
+// Styles
+import styles from './UpdateDataForm.module.css'
+
+const FORM_LABEL_COL = { span: 8 }
+const FORM_STYLE = {width: 600}
+
+const multiplySelectRules = [...RULES.required, ...RULES.multiplyValuesValidator];
+
 const UpdateDataForm: FC<UpdateDataFormProps> = props => {
   const { initialData, onCancel } = props
 
@@ -71,8 +79,8 @@ const UpdateDataForm: FC<UpdateDataFormProps> = props => {
       initialValues={initialValues}
       onFieldsChange={handleFieldsChange}
       onValuesChange={handleValuesChanged}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
+      labelCol={FORM_LABEL_COL}
+      style={FORM_STYLE}
       autoComplete="off"
       onReset={onCancel}
       onFinish={handleFormSubmit}
@@ -97,14 +105,14 @@ const UpdateDataForm: FC<UpdateDataFormProps> = props => {
         <Select options={EYE_COLOR_OPTIONS} />
       </Form.Item>
 
-      <Form.Item label="Hair color" name="hair_color" rules={[...RULES.required, ...RULES.multiplyValuesValidator]}>
+      <Form.Item label="Hair color" name="hair_color" rules={multiplySelectRules}>
         <Select mode="multiple" allowClear options={HAIR_COLOR_OPTIONS} maxTagCount={3} />
       </Form.Item>
 
       <Form.Item
         label="Skin (body) color"
         name="skin_color"
-        rules={[...RULES.required, ...RULES.multiplyValuesValidator]}
+        rules={multiplySelectRules}
       >
         <Select mode="multiple" allowClear options={BODY_COLOR_OPTIONS} maxTagCount={3} />
       </Form.Item>
@@ -113,7 +121,7 @@ const UpdateDataForm: FC<UpdateDataFormProps> = props => {
         <Select options={GENDER_OPTIONS} />
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item className={styles.actionButtons}>
         <Button type="primary" htmlType="submit" disabled={hasFormErrors || isSameFormValues}>
           Update
         </Button>
