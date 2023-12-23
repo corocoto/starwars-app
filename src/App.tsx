@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import { FC } from 'react';
 // Libs
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Components
-import PageLayout from './components/PageLayout/PageLayout'
+import PageLayout from './components/PageLayout/PageLayout';
 
 // Pages
-import { CharactersListPage, CharacterPage } from './pages'
+import { CharactersListPage, CharacterPage } from './pages';
 
 const App: FC = () => {
   return (
@@ -20,9 +20,9 @@ const App: FC = () => {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-App.displayName = 'App'
+App.displayName = 'App';
 
-export default App
+export default App;

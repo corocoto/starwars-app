@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
+import { useMemo } from 'react';
 
 // Type definitions
-import { Character } from 'src/types/Character.type'
+import { Character } from 'src/types/Character.type';
 
 interface UseDataNormalizeProps {
   data: Character
@@ -52,7 +52,7 @@ const useDataNormalize = ({ data }: UseDataNormalizeProps) => {
       }
     ],
     [data]
-  )
-}
+  );
+};
 
-export default useDataNormalize
+export default useDataNormalize;

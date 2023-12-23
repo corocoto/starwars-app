@@ -1,10 +1,10 @@
-import { FC, useState, useEffect, useCallback, ChangeEvent } from 'react'
+import { FC, useState, useEffect, useCallback, ChangeEvent } from 'react';
 
 // Libs
-import Input from 'antd/es/input'
+import Input from 'antd/es/input';
 
 // Type definitions
-import { InputProps } from 'antd/es/input/Input'
+import { InputProps } from 'antd/es/input/Input';
 
 type SearchInputType = InputProps & {
   value: string
@@ -12,29 +12,29 @@ type SearchInputType = InputProps & {
 }
 
 const SearchInput: FC<SearchInputType> = props => {
-  const { onChangeEvent, value, ...rest } = props
+  const { onChangeEvent, value, ...rest } = props;
 
   // State
-  const [timedQuery, setTimedQuery] = useState(value)
-  const [endedQuery, setEndedQuery] = useState(value)
+  const [timedQuery, setTimedQuery] = useState(value);
+  const [endedQuery, setEndedQuery] = useState(value);
 
   // Effects
   useEffect(() => {
-    const timeoutId = setTimeout(setEndedQuery, 500, timedQuery)
-    return () => clearTimeout(timeoutId)
-  }, [timedQuery])
+    const timeoutId = setTimeout(setEndedQuery, 500, timedQuery);
+    return () => clearTimeout(timeoutId);
+  }, [timedQuery]);
 
   useEffect(() => {
     if (value === endedQuery) {
-      return
+      return;
     }
-    onChangeEvent(endedQuery)
+    onChangeEvent(endedQuery);
   }, [endedQuery, onChangeEvent]) // eslint-disable-line
 
   // Handlers
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setTimedQuery(event.target.value)
-  }, [])
+    setTimedQuery(event.target.value);
+  }, []);
 
   return (
     <Input
@@ -46,7 +46,7 @@ const SearchInput: FC<SearchInputType> = props => {
       onChange={handleChange}
       allowClear
     />
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

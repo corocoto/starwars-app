@@ -1,63 +1,63 @@
-import { useCallback, useEffect, FC } from 'react'
+import { useCallback, useEffect, FC } from 'react';
 
 // Libs
-import { useDispatch, useSelector } from 'react-redux'
-import Pagination from 'antd/es/pagination'
-import { usePrevious } from 'react-use'
+import { useDispatch, useSelector } from 'react-redux';
+import Pagination from 'antd/es/pagination';
+import { usePrevious } from 'react-use';
 
 // Store
-import { fetchCharacters, setSearchQuery, setSelectedPage, charactersSelectors } from 'src/store/slices/Characters'
+import { fetchCharacters, setSearchQuery, setSelectedPage, charactersSelectors } from 'src/store/slices/Characters';
 
 // Type definitions
-import type { AppDispatch } from 'src/store'
-import type { CharactersState } from 'src/store/slices/Characters/Characters.types'
+import type { AppDispatch } from 'src/store';
+import type { CharactersState } from 'src/store/slices/Characters/Characters.types';
 
 // Styles
-import styles from './Content.module.css'
+import styles from './Content.module.css';
 
 // Components
-import { CharacterCards } from './components'
-import { SearchInput } from 'src/components'
+import { CharacterCards } from './components';
+import { SearchInput } from 'src/components';
 
-const { selectCurrentPage, selectCurrentCharactersSearchQuery, selectAllCharacters, selectCount } = charactersSelectors
+const { selectCurrentPage, selectCurrentCharactersSearchQuery, selectAllCharacters, selectCount } = charactersSelectors;
 
 const Content: FC = () => {
   // Hooks
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
   // Selectors
-  const characters = useSelector(selectAllCharacters)
-  const count = useSelector(selectCount)
-  const selectedPage = useSelector(selectCurrentPage)
-  const searchQuery = useSelector(selectCurrentCharactersSearchQuery)
+  const characters = useSelector(selectAllCharacters);
+  const count = useSelector(selectCount);
+  const selectedPage = useSelector(selectCurrentPage);
+  const searchQuery = useSelector(selectCurrentCharactersSearchQuery);
 
-  const prevSearchQuery = usePrevious(searchQuery)
-  const prevSelectedPage = usePrevious(selectedPage)
+  const prevSearchQuery = usePrevious(searchQuery);
+  const prevSelectedPage = usePrevious(selectedPage);
 
   // Effects
   useEffect(() => {
     if (typeof prevSearchQuery === 'undefined' || typeof prevSelectedPage === 'undefined') {
-      return
+      return;
     }
 
-    dispatch(fetchCharacters())
-  }, [selectedPage, searchQuery, dispatch, prevSearchQuery, prevSelectedPage])
+    dispatch(fetchCharacters());
+  }, [selectedPage, searchQuery, dispatch, prevSearchQuery, prevSelectedPage]);
 
   // Handlers
   const handleSearchInputChange = useCallback(
     (newSearchValue: CharactersState['searchQuery']) => {
-      dispatch(setSearchQuery({ searchQuery: newSearchValue }))
-      dispatch(setSelectedPage({ selectedPage: 1 }))
+      dispatch(setSearchQuery({ searchQuery: newSearchValue }));
+      dispatch(setSelectedPage({ selectedPage: 1 }));
     },
     [dispatch]
-  )
+  );
 
   const handleSelectedPageChange = useCallback(
     (newPage: CharactersState['selectedPage']) => {
-      dispatch(setSelectedPage({ selectedPage: newPage }))
+      dispatch(setSelectedPage({ selectedPage: newPage }));
     },
     [dispatch]
-  )
+  );
 
   return (
     <main className={styles.wrapper}>
@@ -79,9 +79,9 @@ const Content: FC = () => {
       </div>
       <CharacterCards characters={characters} />
     </main>
-  )
-}
+  );
+};
 
-Content.displayName = 'Content'
+Content.displayName = 'Content';
 
-export default Content
+export default Content;

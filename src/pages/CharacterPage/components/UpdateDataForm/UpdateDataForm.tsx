@@ -1,76 +1,76 @@
-import { FC, memo, useCallback, useState } from 'react'
+import { FC, memo, useCallback, useState } from 'react';
 
 // Libs
-import Form from 'antd/es/form'
-import Input from 'antd/es/input'
-import Button from 'antd/es/button'
-import InputNumber from 'antd/es/input-number'
-import Select from 'antd/es/select'
-import isEqual from 'lodash/isEqual'
-import { useDispatch } from 'react-redux'
-import { FieldData } from 'rc-field-form/lib/interface'
+import Form from 'antd/es/form';
+import Input from 'antd/es/input';
+import Button from 'antd/es/button';
+import InputNumber from 'antd/es/input-number';
+import Select from 'antd/es/select';
+import isEqual from 'lodash/isEqual';
+import { useDispatch } from 'react-redux';
+import { FieldData } from 'rc-field-form/lib/interface';
 
 // Constants
-import { BODY_COLOR_OPTIONS, EYE_COLOR_OPTIONS, GENDER_OPTIONS, HAIR_COLOR_OPTIONS, RULES } from './constants'
+import { BODY_COLOR_OPTIONS, EYE_COLOR_OPTIONS, GENDER_OPTIONS, HAIR_COLOR_OPTIONS, RULES } from './constants';
 
 // Type definition
-import type { AppDispatch } from 'src/store'
-import { UpdateDataFormProps, AllFormValues } from './UpdateDataForm.types'
+import type { AppDispatch } from 'src/store';
+import { UpdateDataFormProps, AllFormValues } from './UpdateDataForm.types';
 
 // Hooks
-import useInitialFormValues, { FormFields } from './hooks/useInitialFormValues'
+import useInitialFormValues, { FormFields } from './hooks/useInitialFormValues';
 
 // Actions
-import { updateCharacterInfo } from 'src/store/slices/Character'
+import { updateCharacterInfo } from 'src/store/slices/Character';
 
 // Misc
-import getNormalizedCharacterData from './utils/getNormalizedCharacterData'
+import getNormalizedCharacterData from './utils/getNormalizedCharacterData';
 
 // Styles
-import styles from './UpdateDataForm.module.css'
+import styles from './UpdateDataForm.module.css';
 
-const FORM_LABEL_COL = { span: 8 }
-const FORM_STYLE = {width: 600}
+const FORM_LABEL_COL = { span: 8 };
+const FORM_STYLE = {width: 600};
 
 const multiplySelectRules = [...RULES.required, ...RULES.multiplyValuesValidator];
 
 const UpdateDataForm: FC<UpdateDataFormProps> = props => {
-  const { initialData, onCancel } = props
+  const { initialData, onCancel } = props;
 
   // State
-  const [hasFormErrors, setHasFormErrors] = useState(false)
-  const [isSameFormValues, setIsSameFormValues] = useState(true)
+  const [hasFormErrors, setHasFormErrors] = useState(false);
+  const [isSameFormValues, setIsSameFormValues] = useState(true);
 
   // Hooks
-  const [form] = Form.useForm()
-  const dispatch = useDispatch<AppDispatch>()
-  const initialValues: FormFields = useInitialFormValues(initialData)
+  const [form] = Form.useForm();
+  const dispatch = useDispatch<AppDispatch>();
+  const initialValues: FormFields = useInitialFormValues(initialData);
 
   // Handlers
   const handleValuesChanged = useCallback(
     (_changedValue: Partial<AllFormValues>, allValues: AllFormValues) => {
-      const isChanged = isEqual(allValues, initialValues)
+      const isChanged = isEqual(allValues, initialValues);
 
-      setIsSameFormValues(isChanged)
+      setIsSameFormValues(isChanged);
     },
     [initialValues]
-  )
+  );
 
   const handleFieldsChange = useCallback((_changedFields: FieldData[], allFields: FieldData[]) => {
-    const hasErrors = allFields.some(field => field.errors && field.errors.length > 0)
+    const hasErrors = allFields.some(field => field.errors && field.errors.length > 0);
 
-    setHasFormErrors(hasErrors)
-  }, [])
+    setHasFormErrors(hasErrors);
+  }, []);
 
   const handleFormSubmit = useCallback(
     (updatedFormData: AllFormValues) => {
-      const normalizedCharacterData = getNormalizedCharacterData(initialData, updatedFormData)
+      const normalizedCharacterData = getNormalizedCharacterData(initialData, updatedFormData);
 
-      dispatch(updateCharacterInfo({ data: normalizedCharacterData }))
-      onCancel()
+      dispatch(updateCharacterInfo({ data: normalizedCharacterData }));
+      onCancel();
     },
     [dispatch, initialData, onCancel]
-  )
+  );
 
   return (
     <Form
@@ -128,7 +128,7 @@ const UpdateDataForm: FC<UpdateDataFormProps> = props => {
         <Button htmlType="reset">Cancel</Button>
       </Form.Item>
     </Form>
-  )
-}
+  );
+};
 
-export default memo(UpdateDataForm)
+export default memo(UpdateDataForm);

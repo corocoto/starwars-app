@@ -1,7 +1,7 @@
-import { memo, FC, ImgHTMLAttributes } from 'react'
+import { memo, FC, ImgHTMLAttributes } from 'react';
 
 // Libs
-import AntdCard from 'antd/es/card'
+import AntdCard from 'antd/es/card';
 
 interface CardProps {
   hoverable?: boolean
@@ -9,16 +9,16 @@ interface CardProps {
   title: string
 }
 
-const CARD_INLINE_STYLES = { width: 300 }
+const CARD_INLINE_STYLES = { width: 300 };
 
 const Card: FC<CardProps> = ({ hoverable, imageProps, title }) => {
   return (
     <AntdCard hoverable={hoverable} style={CARD_INLINE_STYLES} cover={<img {...imageProps} alt={imageProps.alt} />}>
       <AntdCard.Meta title={title} />
     </AntdCard>
-  )
-}
+  );
+};
 
-Card.displayName = 'Card'
+Card.displayName = 'Card';
 
-export default memo(Card)
+export default memo(Card);

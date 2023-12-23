@@ -8,10 +8,10 @@ import { api } from "src/services/api";
 import { Character } from "src/types/Character.type";
 import { Paginated, Status } from 'src/types/Thunk.type';
 import type { RootState } from 'src/store';
-import type { CharactersState } from './Characters.types'
+import type { CharactersState } from './Characters.types';
 
 // Misc
-import getQueryParams from './utils/getQueryParams'
+import getQueryParams from './utils/getQueryParams';
 
 const initialState = {
   data: [],
@@ -34,7 +34,7 @@ export const fetchCharacters = createAsyncThunk<Paginated<Character[]>, undefine
   const response = await api.get(`people/${queryParams}`);
 
   return response.data;
-})
+});
 
 const charactersSlice = createSlice({
   name: 'characters',
@@ -46,13 +46,13 @@ const charactersSlice = createSlice({
     },
     setSelectedPage: (state, {payload}) => {
       const {selectedPage} = payload;
-      state.selectedPage = selectedPage
+      state.selectedPage = selectedPage;
     },
   },
   extraReducers(builder) {
     builder
         .addCase(fetchCharacters.pending, (state: CharactersState) => {
-          state.status = Status.LOADING
+          state.status = Status.LOADING;
         })
         .addCase(fetchCharacters.fulfilled, (state: CharactersState, action) => {
           state.status = Status.SUCCEEDED;
@@ -62,7 +62,7 @@ const charactersSlice = createSlice({
         .addCase(fetchCharacters.rejected, (state: CharactersState, action) => {
           state.status = Status.FAILED;
           state.error = action.error.message;
-        })
+        });
   }
 });
 

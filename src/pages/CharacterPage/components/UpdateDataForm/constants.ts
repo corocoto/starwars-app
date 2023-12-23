@@ -12,7 +12,7 @@ export const COLORS = {
   white: 'white',
   gold: 'gold',
   greenTan: 'green-tan'
-}
+};
 
 export const UNKNOWN_VALUE = 'unknown';
 export const HAVE_NOT_ATTR = 'n/a';
@@ -48,7 +48,7 @@ export const EYE_COLOR_OPTIONS = [
   {
     value: HAVE_NOT_ATTR, label: 'doesn\'t have'
   }
-]
+];
 
 export const HAIR_COLOR_OPTIONS = [
   {
@@ -75,7 +75,7 @@ export const HAIR_COLOR_OPTIONS = [
   {
     value: COLORS.white, label: COLORS.white
   }
-]
+];
 
 export const BODY_COLOR_OPTIONS = [
   {
@@ -111,7 +111,7 @@ export const BODY_COLOR_OPTIONS = [
   {
     value: 'pale', label: 'pale'
   }
-]
+];
 
 export const GENDER_OPTIONS = [
   {
@@ -126,7 +126,7 @@ export const GENDER_OPTIONS = [
   {
     value: 'hermaphrodite', label: 'hermaphrodite'
   }
-]
+];
 
 export const RULES = {
   required: [{required: true}],
@@ -135,9 +135,9 @@ export const RULES = {
     const hasUnknownValueSelected = values.includes(UNKNOWN_VALUE);
 
       if (values.length > 1 && (hasNotValueSelected || hasUnknownValueSelected)) {
-        return Promise.reject('Logical error! You can\'t save values where some of them can contradict to each other')
+        return Promise.reject('Logical error! You can\'t save values where some of them can contradict to each other');
       }
 
       return Promise.resolve();
     }}]
-}
+};

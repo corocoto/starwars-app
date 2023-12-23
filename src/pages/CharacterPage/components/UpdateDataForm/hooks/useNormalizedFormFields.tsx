@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
+import { useMemo } from 'react';
 
 // Type definitions
-import { Character } from 'src/types/Character.type'
+import { Character } from 'src/types/Character.type';
 
 const useNormalizedFormFields = (data: Character) => {
   return useMemo(() => {
@@ -38,8 +38,8 @@ const useNormalizedFormFields = (data: Character) => {
         name: ['gender'],
         value: data.gender
       }
-    ]
-  }, [data])
-}
+    ];
+  }, [data]);
+};
 
-export default useNormalizedFormFields
+export default useNormalizedFormFields;

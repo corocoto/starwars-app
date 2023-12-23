@@ -1,14 +1,14 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
 // Libs
-import { Outlet, Link } from 'react-router-dom'
-import Layout from 'antd/es/layout'
+import { Outlet, Link } from 'react-router-dom';
+import Layout from 'antd/es/layout';
 
 // Images
-import logo from 'public/images/logo.svg'
+import logo from 'public/images/logo.svg';
 
 // Styles
-import styles from './PageLayout.module.css'
+import styles from './PageLayout.module.css';
 
 const PageLayout: FC = () => {
   return (
@@ -36,9 +36,9 @@ const PageLayout: FC = () => {
         </p>
       </Layout.Footer>
     </Layout>
-  )
-}
+  );
+};
 
-PageLayout.displayName = 'PageLayout'
+PageLayout.displayName = 'PageLayout';
 
-export default PageLayout
+export default PageLayout;

@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo } from 'react';
 
 // Constants
-import { UNKNOWN_VALUE } from '../constants'
+import { UNKNOWN_VALUE } from '../constants';
 
 // Type definitions
-import { Character } from 'src/types/Character.type'
+import { Character } from 'src/types/Character.type';
 
 export interface FormFields {
   name: string
@@ -30,7 +30,7 @@ const useInitialFormValues = (data: Character) => {
       gender: data.gender ?? UNKNOWN_VALUE
     }),
     [data]
-  )
-}
+  );
+};
 
-export default useInitialFormValues
+export default useInitialFormValues;

@@ -1,13 +1,13 @@
-import { FC, ReactNode, memo } from 'react'
+import { FC, ReactNode, memo } from 'react';
 
 // Type definitions
-import { Character } from 'src/types/Character.type'
+import { Character } from 'src/types/Character.type';
 
 // Hooks
-import useDataNormalize from './hooks/useDataNormalize'
+import useDataNormalize from './hooks/useDataNormalize';
 
 // Libs
-import Descriptions from 'antd/es/descriptions'
+import Descriptions from 'antd/es/descriptions';
 
 interface ReadableTableProps {
   data: Character
@@ -15,10 +15,10 @@ interface ReadableTableProps {
 }
 
 const ReadableTable: FC<ReadableTableProps> = props => {
-  const { data, actionButtons: ActionButtons } = props
+  const { data, actionButtons: ActionButtons } = props;
 
   // Hooks
-  const normalizedData = useDataNormalize({ data })
+  const normalizedData = useDataNormalize({ data });
 
   return (
     <Descriptions
@@ -28,9 +28,9 @@ const ReadableTable: FC<ReadableTableProps> = props => {
       extra={ActionButtons}
       bordered
     />
-  )
-}
+  );
+};
 
-ReadableTable.displayName = 'ReadableTable'
+ReadableTable.displayName = 'ReadableTable';
 
-export default memo(ReadableTable)
+export default memo(ReadableTable);

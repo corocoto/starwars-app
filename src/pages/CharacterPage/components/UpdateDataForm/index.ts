@@ -1,1 +1,1 @@
-export {default} from './UpdateDataForm'
+export {default} from './UpdateDataForm';

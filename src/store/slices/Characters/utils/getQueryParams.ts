@@ -1,8 +1,8 @@
 // Type definitions
-import type {CharactersState} from 'src/store/slices/Characters/Characters.types'
+import type {CharactersState} from 'src/store/slices/Characters/Characters.types';
 
 const getQueryParams = ({pageNumber, searchRequest}: {pageNumber?: CharactersState['selectedPage'], searchRequest: CharactersState['searchQuery']}) => {
-  let query = ''
+  let query = '';
 
   if (pageNumber && searchRequest) {
     query = `?page=${pageNumber}&search=${searchRequest}`;
@@ -13,6 +13,6 @@ const getQueryParams = ({pageNumber, searchRequest}: {pageNumber?: CharactersSta
   }
 
   return query;
-}
+};
 
 export default getQueryParams;

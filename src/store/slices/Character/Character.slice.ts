@@ -1,12 +1,12 @@
 // Libs
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // APIs
 import { api } from 'src/services/api';
 
 // Type definition
-import { Character } from 'src/types/Character.type'
-import { Status } from 'src/types/Thunk.type'
+import { Character } from 'src/types/Character.type';
+import { Status } from 'src/types/Thunk.type';
 import { CharacterState } from 'src/store/slices/Character/Character.types';
 
 
@@ -41,7 +41,7 @@ const characterSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCharacter.pending, (state: CharacterState) => {
-        state.status = Status.LOADING
+        state.status = Status.LOADING;
       })
       .addCase(fetchCharacter.fulfilled, (state: CharacterState, action) => {
         state.status = Status.SUCCEEDED;
@@ -50,9 +50,9 @@ const characterSlice = createSlice({
       .addCase(fetchCharacter.rejected, (state: CharacterState, action) => {
         state.status = Status.FAILED;
         state.error = action.error.message;
-    })
+    });
   }
-})
+});
 
 
 // Actions

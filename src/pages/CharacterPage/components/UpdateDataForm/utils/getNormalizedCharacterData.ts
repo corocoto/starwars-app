@@ -12,11 +12,11 @@ const getNormalizedValue = (value: FieldValue , key: keyof AllFormValues): strin
   }
 
   if (typeof value === 'number') {
-    return String(value)
+    return String(value);
   }
 
   return value;
-}
+};
 
 const getNormalizedCharacterData = (characterStoreData: Character, updatedFormData: AllFormValues): Character => {
   const result = structuredClone(characterStoreData);
@@ -27,6 +27,6 @@ const getNormalizedCharacterData = (characterStoreData: Character, updatedFormDa
   }
 
   return result;
-}
+};
 
 export default getNormalizedCharacterData;
