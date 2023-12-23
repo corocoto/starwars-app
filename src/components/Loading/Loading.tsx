@@ -3,7 +3,7 @@ import { FC } from 'react'
 // Libs
 import Lottie from 'lottie-react'
 
-// Data
+// Animation data
 import loadingData from './fixtures/animations/loadingData.json'
 
 // Styles

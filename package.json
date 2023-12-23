@@ -10,8 +10,8 @@
     "tsc:check": "tsc -p tsconfig.json --noEmit",
     "eslint:format": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "eslint:check": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "prettier:format": "prettier --write ./src/**/*.{css,js,ts,jsx,tsx}",
-    "prettier:check": "prettier --check ./src/**/*.{css,js,ts,jsx,tsx}",
+    "prettier:format": "prettier --write ./src/**/*.{css,ts,tsx}",
+    "prettier:check": "prettier --check ./src/**/*.{css,ts,tsx}",
     "editorconfig:check": "editorconfig-checker",
     "lint": "npm run editorconfig:check && npm run eslint:check && npm run prettier:check && npm run tsc:check",
     "prepare": "npx simple-git-hooks"

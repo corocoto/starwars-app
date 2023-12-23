@@ -29,7 +29,7 @@ const PageLayout: FC = () => {
           </a>
         </p>
         <p>
-          Data which using here is thankfully available at the{' '}
+          Data, which using here, is thankfully provided by
           <a href="https://swapi.dev/" className={styles.footer__link}>
             SWAPI
           </a>

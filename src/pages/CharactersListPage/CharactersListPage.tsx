@@ -8,14 +8,14 @@ import { Loading } from 'src/components'
 import { Content } from './components'
 
 // Thunks
-import { fetchCharacters } from 'src/store/slices/Characters';
+import { fetchCharacters } from 'src/store/slices/Characters'
 
 // Selectors
-import {selectStatus} from 'src/store/slices/Characters/selectors'
+import { selectStatus } from 'src/store/slices/Characters/selectors'
 
 // Type definitions
 import type { AppDispatch } from 'src/store'
-import {Status} from 'src/types/Thunk.type'
+import { Status } from 'src/types/Thunk.type'
 
 const CharactersListPage: FC = () => {
   // Hooks

@@ -5,7 +5,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from "src/services/api";
 
 // Type definition
-import type { Person } from "src/types/Character.type";
+import { Character } from "src/types/Character.type";
 import { Paginated, Status } from 'src/types/Thunk.type';
 import type { RootState } from 'src/store';
 import type { CharactersState } from './Characters.types'
@@ -23,7 +23,7 @@ const initialState = {
 };
 
 // Thunks
-export const fetchCharacters = createAsyncThunk<Paginated<Person[]>, undefined, { rejectValue: Error }>('characters/fetchCharacters', async (_, {getState}) => {
+export const fetchCharacters = createAsyncThunk<Paginated<Character[]>, undefined, { rejectValue: Error }>('characters/fetchCharacters', async (_, {getState}) => {
   const state = getState() as RootState;
 
   const queryParams = getQueryParams({

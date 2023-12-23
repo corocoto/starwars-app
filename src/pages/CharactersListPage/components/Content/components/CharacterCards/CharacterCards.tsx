@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from 'react'
 
 // Styles
 import styles from './CharacterCards.module.css'
@@ -10,7 +10,7 @@ import { getUrlId } from 'src/utils/getUrlId'
 import { CharacterCard } from './components'
 
 // Type definitions
-import {CharactersState} from 'src/store/slices/Characters/Characters.types'
+import { CharactersState } from 'src/store/slices/Characters/Characters.types'
 
 interface CharacterCardsProps {
   characters: CharactersState['data']

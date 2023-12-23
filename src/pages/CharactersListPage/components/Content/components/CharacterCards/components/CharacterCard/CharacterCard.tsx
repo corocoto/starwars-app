@@ -1,7 +1,7 @@
 import { memo, FC, useMemo } from 'react'
 
 // Components
-import {Card} from 'src/components';
+import { Card } from 'src/components'
 
 // Libs
 import { Link } from 'react-router-dom'
@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom'
 import { getUrlId } from 'src/utils/getUrlId'
 
 // Type definitions
-import type { Person } from 'src/types/Character.type';
+import { Character } from 'src/types/Character.type'
 
 interface CharacterCardProps {
   imageSrc: string
-  details: Person
+  details: Character
 }
 
 const CharacterCard: FC<CharacterCardProps> = ({ imageSrc, details }) => {
@@ -27,7 +27,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ imageSrc, details }) => {
       src: imageSrc,
       alt: `${name} photo`
     }
-  }, [imageSrc, name]);
+  }, [imageSrc, name])
 
   return (
     <Link to={`/characters/${id}`}>

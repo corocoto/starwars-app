@@ -5,21 +5,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { api } from 'src/services/api';
 
 // Type definition
-import type { Person } from 'src/types/Character.type'
+import { Character } from 'src/types/Character.type'
 import { Status } from 'src/types/Thunk.type'
 import { CharacterState } from 'src/store/slices/Character/Character.types';
 
 
 
 const initialState = {
-  // id: null,
   data: null,
   status: Status.IDLE,
   error: null,
 };
 
 // Thunks
-export const fetchCharacter = createAsyncThunk<Person, string, { rejectValue: Error }>('character/fetchById', async (characterId) => {
+export const fetchCharacter = createAsyncThunk<Character, string, { rejectValue: Error }>('character/fetchById', async (characterId) => {
   const response = await api.get(`/people/${characterId}`);
   return response.data;
 });
@@ -32,10 +31,9 @@ const characterSlice = createSlice({
     setPreloadedInformation: (state, {payload}) => {
       const {data} = payload;
       state.data = data;
-      // state.id = characterId;
       state.status = Status.SUCCEEDED;
     },
-    editCharacter: (state, {payload}) => {
+    updateCharacterInfo: (state, {payload}) => {
       const { data } = payload;
       state.data = data;
     }
@@ -58,6 +56,6 @@ const characterSlice = createSlice({
 
 
 // Actions
-export const {setPreloadedInformation, editCharacter} = characterSlice.actions;
+export const {setPreloadedInformation, updateCharacterInfo} = characterSlice.actions;
 
 export default characterSlice.reducer;

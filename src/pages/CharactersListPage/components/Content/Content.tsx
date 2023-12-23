@@ -6,12 +6,7 @@ import Pagination from 'antd/es/pagination'
 import { usePrevious } from 'react-use'
 
 // Store
-import {
-  fetchCharacters,
-  setSearchQuery,
-  setSelectedPage,
-  charactersSelectors,
-} from 'src/store/slices/Characters'
+import { fetchCharacters, setSearchQuery, setSelectedPage, charactersSelectors } from 'src/store/slices/Characters'
 
 // Type definitions
 import type { AppDispatch } from 'src/store'
@@ -24,12 +19,7 @@ import styles from './Content.module.css'
 import { CharacterCards } from './components'
 import { SearchInput } from 'src/components'
 
-const {
-  selectCurrentPage,
-  selectCurrentCharactersSearchQuery,
-  selectAllCharacters,
-  selectCount
-} = charactersSelectors
+const { selectCurrentPage, selectCurrentCharactersSearchQuery, selectAllCharacters, selectCount } = charactersSelectors
 
 const Content: FC = () => {
   // Hooks

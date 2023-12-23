@@ -29,11 +29,11 @@ const SearchInput: FC<SearchInputType> = props => {
       return
     }
     onChangeEvent(endedQuery)
-  }, [endedQuery, onChangeEvent])
+  }, [endedQuery, onChangeEvent]) // eslint-disable-line
 
   // Handlers
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setTimedQuery(event.target.value);
+    setTimedQuery(event.target.value)
   }, [])
 
   return (
