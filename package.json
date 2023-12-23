@@ -34,6 +34,10 @@
       "prettier --write ./src/**/*.css"
     ]
   },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "pre-push": "npm run lint"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.12.2",
