@@ -13,8 +13,8 @@ import { getUrlId } from 'src/utils/getUrlId';
 import { Character } from 'src/types/Character.type';
 
 interface CharacterCardProps {
-  imageSrc: string
-  details: Character
+  imageSrc: string;
+  details: Character;
 }
 
 const CharacterCard: FC<CharacterCardProps> = ({ imageSrc, details }) => {

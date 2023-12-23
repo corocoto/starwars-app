@@ -4,9 +4,9 @@ import { memo, FC, ImgHTMLAttributes } from 'react';
 import AntdCard from 'antd/es/card';
 
 interface CardProps {
-  hoverable?: boolean
-  imageProps: ImgHTMLAttributes<HTMLImageElement>
-  title: string
+  hoverable?: boolean;
+  imageProps: ImgHTMLAttributes<HTMLImageElement>;
+  title: string;
 }
 
 const CARD_INLINE_STYLES = { width: 300 };

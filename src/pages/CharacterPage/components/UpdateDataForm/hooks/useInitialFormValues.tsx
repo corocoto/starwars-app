@@ -7,14 +7,14 @@ import { UNKNOWN_VALUE } from '../constants';
 import { Character } from 'src/types/Character.type';
 
 export interface FormFields {
-  name: string
-  birth_year: number
-  height: string
-  mass: string
-  eye_color: string
-  hair_color: string[]
-  skin_color: string[]
-  gender: string
+  name: string;
+  birth_year: number;
+  height: string;
+  mass: string;
+  eye_color: string;
+  hair_color: string[];
+  skin_color: string[];
+  gender: string;
 }
 
 const useInitialFormValues = (data: Character) => {

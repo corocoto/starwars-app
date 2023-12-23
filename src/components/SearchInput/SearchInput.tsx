@@ -7,9 +7,9 @@ import Input from 'antd/es/input';
 import { InputProps } from 'antd/es/input/Input';
 
 type SearchInputType = InputProps & {
-  value: string
-  onChangeEvent: (newValue: string) => void
-}
+  value: string;
+  onChangeEvent: (newValue: string) => void;
+};
 
 const SearchInput: FC<SearchInputType> = props => {
   const { onChangeEvent, value, ...rest } = props;
@@ -29,7 +29,7 @@ const SearchInput: FC<SearchInputType> = props => {
       return;
     }
     onChangeEvent(endedQuery);
-  }, [endedQuery, onChangeEvent]) // eslint-disable-line
+  }, [endedQuery, onChangeEvent]); // eslint-disable-line
 
   // Handlers
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {

@@ -7,9 +7,6 @@ import { ReadableTable, UpdateDataForm } from './components';
 // Libs
 import Button from 'antd/es/button';
 
-// HOCs
-import withData from './hocs/withData';
-
 // Styles
 import styles from './CharacterPage.module.css';
 
@@ -17,11 +14,11 @@ import styles from './CharacterPage.module.css';
 import { Character } from 'src/types/Character.type';
 
 export interface CharacterPageProps {
-  characterData: Character
-  id: string
+  characterData: Character;
+  id: string;
 }
 
-const CharacterPage: FC<CharacterPageProps | undefined> = ({ characterData, id }) => {
+const CharacterPage: FC<CharacterPageProps> = ({ characterData, id }) => {
   // States
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
@@ -63,4 +60,4 @@ const CharacterPage: FC<CharacterPageProps | undefined> = ({ characterData, id }
 
 CharacterPage.displayName = 'CharacterPage';
 
-export default withData(CharacterPage);
+export default CharacterPage;

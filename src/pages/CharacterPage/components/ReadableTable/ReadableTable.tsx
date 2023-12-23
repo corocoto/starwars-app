@@ -10,8 +10,8 @@ import useDataNormalize from './hooks/useDataNormalize';
 import Descriptions from 'antd/es/descriptions';
 
 interface ReadableTableProps {
-  data: Character
-  actionButtons: ReactNode
+  data: Character;
+  actionButtons: ReactNode;
 }
 
 const ReadableTable: FC<ReadableTableProps> = props => {

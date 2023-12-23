@@ -22,7 +22,8 @@ const getNormalizedCharacterData = (characterStoreData: Character, updatedFormDa
   const result = structuredClone(characterStoreData);
 
   for (const key in updatedFormData) {
-      // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       result[key] = getNormalizedValue(updatedFormData[key as keyof AllFormValues], key as keyof AllFormValues);
   }
 

@@ -1,3 +1,6 @@
+// Libs
+import { RuleObject } from 'rc-field-form/lib/interface';
+
 export const COLORS = {
   blue: 'blue',
   blueGray: 'blue-gray',
@@ -130,7 +133,7 @@ export const GENDER_OPTIONS = [
 
 export const RULES = {
   required: [{required: true}],
-  multiplyValuesValidator: [{ validator: (fieldSchema, values) => {
+  multiplyValuesValidator: [{ validator: (_fieldSchema: RuleObject, values: string[]) => {
     const hasNotValueSelected = values.includes(HAVE_NOT_ATTR);
     const hasUnknownValueSelected = values.includes(UNKNOWN_VALUE);
 

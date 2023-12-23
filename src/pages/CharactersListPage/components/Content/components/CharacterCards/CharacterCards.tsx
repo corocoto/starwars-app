@@ -13,7 +13,7 @@ import { CharacterCard } from './components';
 import { CharactersState } from 'src/store/slices/Characters/Characters.types';
 
 interface CharacterCardsProps {
-  characters: CharactersState['data']
+  characters: CharactersState['data'];
 }
 
 const CharacterCards: FC<CharacterCardsProps> = ({ characters }) => {

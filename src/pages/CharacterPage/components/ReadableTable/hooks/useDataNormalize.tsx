@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Character } from 'src/types/Character.type';
 
 interface UseDataNormalizeProps {
-  data: Character
+  data: Character;
 }
 
 const useDataNormalize = ({ data }: UseDataNormalizeProps) => {

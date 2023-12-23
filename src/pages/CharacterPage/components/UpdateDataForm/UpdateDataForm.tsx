@@ -30,7 +30,7 @@ import getNormalizedCharacterData from './utils/getNormalizedCharacterData';
 import styles from './UpdateDataForm.module.css';
 
 const FORM_LABEL_COL = { span: 8 };
-const FORM_STYLE = {width: 600};
+const FORM_STYLE = { width: 600 };
 
 const multiplySelectRules = [...RULES.required, ...RULES.multiplyValuesValidator];
 
@@ -109,11 +109,7 @@ const UpdateDataForm: FC<UpdateDataFormProps> = props => {
         <Select mode="multiple" allowClear options={HAIR_COLOR_OPTIONS} maxTagCount={3} />
       </Form.Item>
 
-      <Form.Item
-        label="Skin (body) color"
-        name="skin_color"
-        rules={multiplySelectRules}
-      >
+      <Form.Item label="Skin (body) color" name="skin_color" rules={multiplySelectRules}>
         <Select mode="multiple" allowClear options={BODY_COLOR_OPTIONS} maxTagCount={3} />
       </Form.Item>
 
