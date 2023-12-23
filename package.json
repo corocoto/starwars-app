@@ -1,6 +1,5 @@
 {
   "name": "starwars-app",
-  "private": true,
   "version": "0.0.2",
   "type": "module",
   "homepage": "https://corocoto.github.io/starwars-app",
