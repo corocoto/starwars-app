@@ -10,5 +10,6 @@ export default defineConfig({
       src: path.resolve('src/'),
       public: path.resolve('public/')
     },
-  }
+  },
+  base: '/starwars-app/'
 });
