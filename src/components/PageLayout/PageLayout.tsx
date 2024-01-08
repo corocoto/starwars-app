@@ -5,7 +5,7 @@ import { Outlet, Link } from 'react-router-dom';
 import Layout from 'antd/es/layout';
 
 // Images
-import logo from 'public/images/logo.svg';
+import logo from 'src/assets/images/logo.svg';
 
 // Styles
 import styles from './PageLayout.module.css';
