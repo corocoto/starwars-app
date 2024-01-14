@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Store
-import { fetchCharacter, setPreloadedInformation } from 'src/store/slices/Character';
+import { fetchCharacter, resetCharacterInfo, setPreloadedInformation } from 'src/store/slices/Character';
 
 // Type definitions
 import type { AppDispatch, RootState } from 'src/store';
@@ -26,7 +26,7 @@ interface GetCharacterDataWrapperProps {
   children: ({ id, characterData }: CharacterPageProps) => JSX.Element;
 }
 
-const GetCharacterDataWrapper = ({ children }: GetCharacterDataWrapperProps) => {
+const CharacterPageDataWrapper = ({ children }: GetCharacterDataWrapperProps) => {
   // Hooks
   const id = useParams().id as string;
   const dispatch = useDispatch<AppDispatch>();
@@ -36,11 +36,8 @@ const GetCharacterDataWrapper = ({ children }: GetCharacterDataWrapperProps) => 
   const status = useSelector(selectStatus);
   const characterData = useSelector(selectData);
 
+  // Effects
   useEffect(() => {
-    if (characterData !== null) {
-      return;
-    }
-
     if (typeof loadedCharacter === 'undefined') {
       dispatch(fetchCharacter(id));
     } else {
@@ -50,7 +47,14 @@ const GetCharacterDataWrapper = ({ children }: GetCharacterDataWrapperProps) => 
         })
       );
     }
-  }, [characterData, dispatch, id, loadedCharacter]);
+  }, [dispatch, id, loadedCharacter]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCharacterInfo());
+    };
+  }, [dispatch]);
+
 
   if (status === Status.LOADING) {
     return <Loading />;
@@ -65,6 +69,6 @@ const GetCharacterDataWrapper = ({ children }: GetCharacterDataWrapperProps) => 
   }
 };
 
-GetCharacterDataWrapper.displayName = 'GetCharacterDataWrapper';
+CharacterPageDataWrapper.displayName = 'CharacterPageDataWrapper';
 
-export default GetCharacterDataWrapper;
+export default CharacterPageDataWrapper;

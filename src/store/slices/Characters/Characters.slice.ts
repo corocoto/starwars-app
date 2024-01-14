@@ -31,7 +31,7 @@ export const fetchCharacters = createAsyncThunk<Paginated<Character[]>, undefine
     searchRequest: state.characters.searchQuery
   });
 
-  const response = await api.get(`people/${queryParams}`);
+  const response = await api.get(`people/?${queryParams}`);
 
   return response.data;
 });
@@ -56,7 +56,7 @@ const charactersSlice = createSlice({
         })
         .addCase(fetchCharacters.fulfilled, (state: CharactersState, action) => {
           state.status = Status.SUCCEEDED;
-          state.data = [...action.payload.results];
+          state.data = action.payload.results;
           state.count = action.payload.count;
         })
         .addCase(fetchCharacters.rejected, (state: CharactersState, action) => {

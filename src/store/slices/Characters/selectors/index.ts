@@ -1,13 +1,14 @@
 // Type definition
 import { RootState } from 'src/store';
 
+// Misc
+import { getUrlId } from 'src/utils';
+
 // Selectors
 export const selectAllCharacters = (state: RootState) => state.characters.data;
 export const selectCharacterById = (state: RootState, characterId: string) => {
   return state.characters.data.find(character => {
-    const url = character.url;
-    const id = url.split('/').at(-2);
-    return id === characterId;
+    return getUrlId(character.url) === characterId;
   });
 };
 export const selectCount = (state: RootState) => state.characters.count;

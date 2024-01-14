@@ -36,6 +36,9 @@ const characterSlice = createSlice({
     updateCharacterInfo: (state, {payload}) => {
       const { data } = payload;
       state.data = data;
+    },
+    resetCharacterInfo: () => {
+      return initialState;
     }
   },
   extraReducers(builder) {
@@ -56,6 +59,6 @@ const characterSlice = createSlice({
 
 
 // Actions
-export const {setPreloadedInformation, updateCharacterInfo} = characterSlice.actions;
+export const {setPreloadedInformation, updateCharacterInfo, resetCharacterInfo} = characterSlice.actions;
 
 export default characterSlice.reducer;

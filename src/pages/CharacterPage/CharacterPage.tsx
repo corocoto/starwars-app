@@ -13,6 +13,9 @@ import styles from './CharacterPage.module.css';
 // Type definition
 import { Character } from 'src/types/Character.type';
 
+// Misc
+import { getCharacterImageLink } from 'src/utils';
+
 export interface CharacterPageProps {
   characterData: Character;
   id: string;
@@ -34,7 +37,7 @@ const CharacterPage: FC<CharacterPageProps> = ({ characterData, id }) => {
   // Memoized values
   const cardImageProps = useMemo(() => {
     return {
-      src: `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`,
+      src: getCharacterImageLink(id),
       alt: `${characterData.name}'s photo`
     };
   }, [characterData.name, id]);

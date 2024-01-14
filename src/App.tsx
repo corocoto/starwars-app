@@ -7,7 +7,7 @@ import PageLayout from './components/PageLayout/PageLayout';
 
 // Pages
 import { CharactersListPage, CharacterPage } from './pages';
-import GetCharacterDataWrapper from 'src/pages/CharacterPage/GetCharacterDataWrapper';
+import CharacterPageDataWrapper from 'src/pages/CharacterPage/CharacterPageDataWrapper';
 
 const App: FC = () => {
   return (
@@ -19,7 +19,7 @@ const App: FC = () => {
         <Route path="/characters/:id" element={<PageLayout />}>
           <Route
             index
-            element={<GetCharacterDataWrapper>{props => <CharacterPage {...props} />}</GetCharacterDataWrapper>}
+            element={<CharacterPageDataWrapper>{props => <CharacterPage {...props} />}</CharacterPageDataWrapper>}
           />
         </Route>
       </Routes>
