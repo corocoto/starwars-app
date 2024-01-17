@@ -1,13 +1,15 @@
 import { FC } from 'react';
+
 // Libs
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { withErrorBoundary } from 'react-error-boundary';
 
 // Components
-import PageLayout from './components/PageLayout/PageLayout';
+import { ErrorFallback, PageLayout } from 'src/components';
+import CharacterPageDataWrapper from 'src/pages/CharacterPage/CharacterPageDataWrapper';
 
 // Pages
 import { CharactersListPage, CharacterPage } from './pages';
-import CharacterPageDataWrapper from 'src/pages/CharacterPage/CharacterPageDataWrapper';
 
 const App: FC = () => {
   return (
@@ -29,4 +31,7 @@ const App: FC = () => {
 
 App.displayName = 'App';
 
-export default App;
+export default withErrorBoundary(App, {
+  FallbackComponent: ErrorFallback,
+  onError: (error: Error) => console.log(error)
+});

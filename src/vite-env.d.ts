@@ -3,3 +3,4 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 /// <reference types="lodash" />
+/// <reference types="lodash" />

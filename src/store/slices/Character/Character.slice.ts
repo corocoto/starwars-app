@@ -9,31 +9,31 @@ import { Character } from 'src/types/Character.type';
 import { Status } from 'src/types/Thunk.type';
 import { CharacterState } from 'src/store/slices/Character/Character.types';
 
-
-
 const initialState = {
   data: null,
   status: Status.IDLE,
-  error: null,
+  error: null
 };
 
 // Thunks
-export const fetchCharacter = createAsyncThunk<Character, string, { rejectValue: Error }>('character/fetchById', async (characterId) => {
-  const response = await api.get(`/people/${characterId}`);
-  return response.data;
-});
-
+export const fetchCharacter = createAsyncThunk<Character, string, { rejectValue: Error }>(
+  'character/fetchById',
+  async characterId => {
+    const response = await api.get(`/people/${characterId}`);
+    return response.data;
+  }
+);
 
 const characterSlice = createSlice({
   name: 'character',
   initialState: <CharacterState>initialState,
   reducers: {
-    setPreloadedInformation: (state, {payload}) => {
-      const {data} = payload;
+    setPreloadedInformation: (state, { payload }) => {
+      const { data } = payload;
       state.data = data;
       state.status = Status.SUCCEEDED;
     },
-    updateCharacterInfo: (state, {payload}) => {
+    updateCharacterInfo: (state, { payload }) => {
       const { data } = payload;
       state.data = data;
     },
@@ -52,13 +52,12 @@ const characterSlice = createSlice({
       })
       .addCase(fetchCharacter.rejected, (state: CharacterState, action) => {
         state.status = Status.FAILED;
-        state.error = action.error.message;
-    });
+        state.error = action.error;
+      });
   }
 });
 
-
 // Actions
-export const {setPreloadedInformation, updateCharacterInfo, resetCharacterInfo} = characterSlice.actions;
+export const { setPreloadedInformation, updateCharacterInfo, resetCharacterInfo } = characterSlice.actions;
 
 export default characterSlice.reducer;

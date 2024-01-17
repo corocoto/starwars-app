@@ -1,12 +1,11 @@
-import { useCallback, useEffect, FC } from 'react';
+import { useCallback, FC } from 'react';
 
 // Libs
 import { useDispatch, useSelector } from 'react-redux';
 import Pagination from 'antd/es/pagination';
-import { usePrevious } from 'react-use';
 
 // Store
-import { fetchCharacters, setSearchQuery, setSelectedPage, charactersSelectors } from 'src/store/slices/Characters';
+import { fetchCharacters, charactersSelectors } from 'src/store/slices/Characters';
 
 // Type definitions
 import type { AppDispatch } from 'src/store';
@@ -31,30 +30,17 @@ const Content: FC = () => {
   const selectedPage = useSelector(selectCurrentPage);
   const searchQuery = useSelector(selectCurrentCharactersSearchQuery);
 
-  const prevSearchQuery = usePrevious(searchQuery);
-  const prevSelectedPage = usePrevious(selectedPage);
-
-  // Effects
-  useEffect(() => {
-    if (typeof prevSearchQuery === 'undefined' || typeof prevSelectedPage === 'undefined') {
-      return;
-    }
-
-    dispatch(fetchCharacters());
-  }, [selectedPage, searchQuery, dispatch, prevSearchQuery, prevSelectedPage]);
-
   // Handlers
   const handleSearchInputChange = useCallback(
     (newSearchValue: CharactersState['searchQuery']) => {
-      dispatch(setSearchQuery({ searchQuery: newSearchValue }));
-      dispatch(setSelectedPage({ selectedPage: 1 }));
+      dispatch(fetchCharacters({ searchQuery: newSearchValue, selectedPage: 1 }));
     },
     [dispatch]
   );
 
   const handleSelectedPageChange = useCallback(
     (newPage: CharactersState['selectedPage']) => {
-      dispatch(setSelectedPage({ selectedPage: newPage }));
+      dispatch(fetchCharacters({ selectedPage: newPage }));
     },
     [dispatch]
   );

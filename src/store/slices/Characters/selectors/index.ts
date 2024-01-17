@@ -15,3 +15,4 @@ export const selectCount = (state: RootState) => state.characters.count;
 export const selectCurrentPage = (state: RootState) => state.characters.selectedPage;
 export const selectCurrentCharactersSearchQuery = (state: RootState) => state.characters.searchQuery;
 export const selectStatus = (state: RootState) => state.characters.status;
+export const selectError = (state: RootState) => state.characters.error;

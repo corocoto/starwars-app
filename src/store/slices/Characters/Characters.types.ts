@@ -2,11 +2,14 @@
 import { Status } from 'src/types/Thunk.type';
 import { Character } from 'src/types/Character.type';
 
+// Libs
+import { SerializedError } from '@reduxjs/toolkit';
+
 export interface CharactersState {
   status: Status;
-  error?: string | null;
+  error?: SerializedError | null;
   data: Character[];
   count: number;
-  searchQuery: string,
-  selectedPage: number
+  searchQuery: string;
+  selectedPage: number;
 }

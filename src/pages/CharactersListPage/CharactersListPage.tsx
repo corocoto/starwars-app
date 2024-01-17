@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 
 // Libs
 import { useSelector, useDispatch } from 'react-redux';
+import { useErrorBoundary } from 'react-error-boundary';
 
 // Components
 import { Loading } from 'src/components';
@@ -11,7 +12,7 @@ import { Content } from './components';
 import { fetchCharacters } from 'src/store/slices/Characters';
 
 // Selectors
-import { selectStatus } from 'src/store/slices/Characters/selectors';
+import { selectStatus, selectError } from 'src/store/slices/Characters/selectors';
 
 // Type definitions
 import type { AppDispatch } from 'src/store';
@@ -20,9 +21,11 @@ import { Status } from 'src/types/Thunk.type';
 const CharactersListPage: FC = () => {
   // Hooks
   const dispatch = useDispatch<AppDispatch>();
+  const { showBoundary } = useErrorBoundary();
 
   // Selectors
   const status = useSelector(selectStatus);
+  const error = useSelector(selectError);
 
   // Effects
   useEffect(() => {
@@ -40,7 +43,7 @@ const CharactersListPage: FC = () => {
   }
 
   if (status === Status.FAILED) {
-    return <h1>Error</h1>;
+    showBoundary(error);
   }
 };
 

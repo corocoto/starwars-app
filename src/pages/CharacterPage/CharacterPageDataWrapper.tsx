@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 // Libs
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useErrorBoundary } from 'react-error-boundary';
 
 // Store
 import { fetchCharacter, resetCharacterInfo, setPreloadedInformation } from 'src/store/slices/Character';
@@ -20,7 +21,7 @@ import { charactersSelectors } from 'src/store/slices/Characters';
 import { characterSelectors } from 'src/store/slices/Character';
 
 const { selectCharacterById } = charactersSelectors;
-const { selectStatus, selectData } = characterSelectors;
+const { selectStatus, selectData, selectError } = characterSelectors;
 
 interface GetCharacterDataWrapperProps {
   children: ({ id, characterData }: CharacterPageProps) => JSX.Element;
@@ -30,11 +31,13 @@ const CharacterPageDataWrapper = ({ children }: GetCharacterDataWrapperProps) =>
   // Hooks
   const id = useParams().id as string;
   const dispatch = useDispatch<AppDispatch>();
+  const { showBoundary } = useErrorBoundary();
 
   // Selectors
   const loadedCharacter = useSelector((state: RootState) => selectCharacterById(state, id));
   const status = useSelector(selectStatus);
   const characterData = useSelector(selectData);
+  const error = useSelector(selectError);
 
   // Effects
   useEffect(() => {
@@ -55,13 +58,12 @@ const CharacterPageDataWrapper = ({ children }: GetCharacterDataWrapperProps) =>
     };
   }, [dispatch]);
 
-
   if (status === Status.LOADING) {
     return <Loading />;
   }
 
   if (status === Status.FAILED) {
-    return <h1>Error</h1>;
+    showBoundary(error);
   }
 
   if (characterData) {
