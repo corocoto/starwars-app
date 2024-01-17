@@ -1,1 +1,1 @@
-export {default} from './ReadableTable';
+export { default } from './ReadableTable';

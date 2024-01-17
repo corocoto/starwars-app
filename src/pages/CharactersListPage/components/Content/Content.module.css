@@ -1,20 +1,20 @@
 .wrapper {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .pagination {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .searchInput {
-    width: 300px;
+  width: 300px;
 }

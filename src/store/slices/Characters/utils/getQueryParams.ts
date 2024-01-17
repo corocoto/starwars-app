@@ -1,7 +1,13 @@
 // Type definitions
-import type {CharactersState} from 'src/store/slices/Characters/Characters.types';
+import type { CharactersState } from 'src/store/slices/Characters/Characters.types';
 
-const getQueryParams = ({pageNumber, searchRequest}: {pageNumber?: CharactersState['selectedPage'], searchRequest: CharactersState['searchQuery']}) => {
+const getQueryParams = ({
+  pageNumber,
+  searchRequest
+}: {
+  pageNumber?: CharactersState['selectedPage'];
+  searchRequest: CharactersState['searchQuery'];
+}) => {
   const queryParams = new URLSearchParams();
 
   if (pageNumber) {

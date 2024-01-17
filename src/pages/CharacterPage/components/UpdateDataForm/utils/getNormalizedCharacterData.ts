@@ -1,8 +1,8 @@
 // Type definitions
-import { Character } from "src/types/Character.type";
-import { AllFormValues, FieldValue } from "../UpdateDataForm.types";
+import { Character } from 'src/types/Character.type';
+import { AllFormValues, FieldValue } from '../UpdateDataForm.types';
 
-const getNormalizedValue = (value: FieldValue , key: keyof AllFormValues): string => {
+const getNormalizedValue = (value: FieldValue, key: keyof AllFormValues): string => {
   if (Array.isArray(value)) {
     return value.join();
   }
@@ -23,8 +23,8 @@ const getNormalizedCharacterData = (characterStoreData: Character, updatedFormDa
 
   for (const key in updatedFormData) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      result[key] = getNormalizedValue(updatedFormData[key as keyof AllFormValues], key as keyof AllFormValues);
+    // @ts-expect-error
+    result[key] = getNormalizedValue(updatedFormData[key as keyof AllFormValues], key as keyof AllFormValues);
   }
 
   return result;
