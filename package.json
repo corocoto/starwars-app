@@ -26,9 +26,9 @@
       "editorconfig-checker"
     ],
     "*.{ts,tsx}": [
-      "eslint --fix --ext .ts .",
+      "eslint --fix --ext .ts,.tsx .",
       "bash -c tsc --noEmit",
-      "prettier --write ./src/**/*.ts"
+      "prettier --write ./src/**/*.{ts,tsx}"
     ],
     "*.css": [
       "prettier --write ./src/**/*.css"
