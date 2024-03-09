@@ -3,7 +3,6 @@ import { FC } from 'react';
 // Styles
 import styles from './CharacterCards.module.css';
 
-
 // Type definitions
 import { CharactersState } from 'src/store/slices/Characters/Characters.types';
 

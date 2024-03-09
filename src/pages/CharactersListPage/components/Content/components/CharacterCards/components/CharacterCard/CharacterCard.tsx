@@ -11,7 +11,7 @@ import { Character } from 'src/types/Character.type';
 
 interface CharacterCardProps {
   imageSrc: string;
-  details: Character & {id: string};
+  details: Character & { id: string };
 }
 
 const CharacterCard: FC<CharacterCardProps> = ({ imageSrc, details }) => {
